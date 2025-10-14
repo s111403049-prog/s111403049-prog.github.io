@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>我的名片</title>
+    <style>
+        body {
+            background: #f5f6fa;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            display: flex;
+            background: #fff;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            border-radius: 24px;
+            overflow: hidden;
+            width: 480px;
+            max-width: 90vw;
+        }
+        .card-left {
+            background: linear-gradient(135deg, #a3b9b9 0%, #0381cae3 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 180px;
+            padding: 32px 0;
+        }
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        }
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            clip-path: polygon(
+                25% 0%, 75% 0%,
+                100% 50%,
+                75% 100%, 25% 100%,
+                0% 50%
+            );
+        }
+        .card-right {
+            flex: 1;
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2193b0;
+            margin-bottom: 8px;
+        }
+        .info {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 4px;
+        }
+        .role {
+            font-size: 1rem;
+            color: #888;
+            margin-top: 12px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-left">
+            <div class="avatar">
+                <img src="pic1.jpg" alt="個人照片">
+            </div>
+        </div>
+        <div class="card-right">
+            <div class="name">楊鎮遠</div>
+            <div class="info">Email: s111403049@stu.ntue.edu.tw</div>
+            <div class="info">電話: 02-6639-6688</div>
+            <div class="role">學生 | 國立台北教育大學社會與區域發展學系</div>
+        </div>
+    </div>
+</body>
+</html>
