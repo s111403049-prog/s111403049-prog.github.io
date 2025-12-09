@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>簡潔頂部導覽列範例</title>
+  <style>
+    /* 基本重置 */
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Noto Sans TC',"PingFang TC","Microsoft JhengHei",sans-serif;line-height:1.4;color:#111}
+
+    /* 頂部導覽列 */
+    .top-nav{position:sticky;top:0;background:#fff;border-bottom:1px solid rgba(0,0,0,.06);backdrop-filter:blur(6px);z-index:1000}
+    .nav-container{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0.6rem 1rem}
+
+    .brand{display:flex;align-items:center;gap:.6rem;font-weight:600;color:#0b63ce;text-decoration:none}
+    .brand .logo{width:36px;height:36px;border-radius:6px;background:linear-gradient(135deg,#0b63ce,#6ec1ff);display:inline-block}
+
+    .nav-links{display:flex;gap:.6rem;align-items:center}
+    .nav-links a{padding:.5rem .75rem;border-radius:6px;color:inherit;text-decoration:none;font-weight:500;font-size:0.95rem}
+    .nav-links a:hover{background:rgba(11,99,206,0.08)}
+    .nav-links a:active,.nav-links a.active{background:rgba(11,99,206,0.12)}
+
+    /* 行動版漢堡 */
+    .menu-btn{display:none;background:transparent;border:0;padding:.4rem;border-radius:6px}
+    .menu-btn:focus{outline:2px solid rgba(11,99,206,0.18)}
+    .hamburger{width:22px;height:2px;background:#111;position:relative;display:inline-block;border-radius:2px}
+    .hamburger::before,.hamburger::after{content:"";position:absolute;left:0;width:22px;height:2px;background:#111;border-radius:2px}
+    .hamburger::before{top:-7px}
+    .hamburger::after{top:7px}
+
+    /* 行動版選單樣式（隱藏/下拉） */
+    .mobile-menu{display:none;flex-direction:column;gap:.25rem;padding:.75rem 1rem;border-top:1px solid rgba(0,0,0,.04);background:#fff}
+    .mobile-menu a{padding:.6rem;border-radius:6px}
+
+    /* 響應式斷點 */
+    @media (max-width:760px){
+      .nav-links{display:none}
+      .menu-btn{display:inline-flex;align-items:center}
+      .mobile-menu{display:flex}
+      .mobile-menu.closed{display:none}
+    }
+  </style>
+</head>
+<body>
+  <header class="top-nav" role="navigation" aria-label="主要導覽列">
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <span class="logo" aria-hidden="true"></span>
+        <span class="brand-text">姓名 / 品牌</span>
+      </a>
+
+      <nav class="nav-links" aria-label="桌面導覽">
+        <a href="#about">關於我</a>
+        <a href="#works">作品集</a>
+        <a href="#services">服務項目</a>
+        <a href="#contact">聯繫</a>
+      </nav>
+
+      <button class="menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="開啟選單">
+        <span class="hamburger" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <!-- 行動版下拉選單 -->
+    <div id="mobile-menu" class="mobile-menu closed" aria-hidden="true">
+      <a href="#about">關於我</a>
+      <a href="#works">作品集</a>
+      <a href="#services">服務項目</a>
+      <a href="#contact">聯繫</a>
+    </div>
+  </header>
+
+<!-- 範例內容區塊 -->
+<main style="padding:2.5rem 1.5rem;max-width:900px;margin:2rem auto;background:#fafbfc;border-radius:12px;box-shadow:0 2px 12px rgba(11,99,206,0.06)">
+    <section id="about" style="padding:3rem 0 2rem 0;border-bottom:1px solid #e3eaf2">
+        <h1 style="font-size:2.2rem;font-weight:700;margin-bottom:1rem;color:#0b63ce">關於我</h1>
+        <p style="color:#444;font-size:1.08rem;line-height:1.8">這是一個簡潔頂部導覽列的範例。將導覽連結連到頁內或其他頁面即可。</p>
+    </section>
+
+    <section id="works" style="padding:3rem 0 2rem 0;border-bottom:1px solid #e3eaf2">
+        <h2 style="font-size:1.6rem;font-weight:600;margin-bottom:.8rem;color:#0b63ce">作品集</h2>
+        <p style="color:#444;font-size:1.05rem;line-height:1.7">在此放置作品縮圖或連結。</p>
+    </section>
+
+    <section id="services" style="padding:3rem 0 2rem 0;border-bottom:1px solid #e3eaf2">
+        <h2 style="font-size:1.6rem;font-weight:600;margin-bottom:.8rem;color:#0b63ce">服務項目</h2>
+        <p style="color:#444;font-size:1.05rem;line-height:1.7">簡短介紹可提供的服務。</p>
+    </section>
+
+    <section id="contact" style="padding:3rem 0 0 0">
+        <h2 style="font-size:1.6rem;font-weight:600;margin-bottom:.8rem;color:#0b63ce">聯繫</h2>
+        <p style="color:#444;font-size:1.05rem;line-height:1.7">放置聯絡方式或聯絡表單。</p>
+    </section>
+</main>
+
+  <script>
+    (function(){
+      const btn = document.querySelector('.menu-btn');
+      const mobile = document.getElementById('mobile-menu');
+      btn.addEventListener('click', ()=>{
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!open));
+        btn.setAttribute('aria-label', open ? '開啟選單' : '關閉選單');
+        mobile.classList.toggle('closed');
+        mobile.setAttribute('aria-hidden', String(open));
+      });
+    })();
+  </script>
+</body>
+</html>
